@@ -7,9 +7,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // html-webpack-plugin を使用する
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// clean-webpack-plugin を使用する
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+
 module.exports = {
     // エントリーポイントのファイルの場所を指定
-    entry: './src/index.js',
+    entry: './src/javascripts/main.js',
 
     // どこにファイルを出力したいのかを指定
     output: {
@@ -20,7 +24,7 @@ module.exports = {
 
         // 出力されるファイルの名前を変更するときはfilename   例えばfilename: 'index_aaa.js'とするとdist/index_aaa.jsのファイルが生成される
         // filenameは記述しなくてもデフォルトでdist/main.jsのファイルが生成されるが、明示的に出力ファイル名を記述していたほうがいい
-        filename: 'main.js',
+        filename: 'javascripts/main.js',
     },
 
     module: {
@@ -48,11 +52,15 @@ module.exports = {
 
     // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
     plugins: [
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            // 出力後のファイルをmain.css(デフォルト)でなく、my.cssに変更する。さらに出力されるdist/index.htmlの読み込みもmy.cssに変更してくれる
+            filename: './stylesheets/main.css'
+        }),
         new HtmlWebpackPlugin({
             // index.html のコンテンツであるテンプレートの場所を記述する
-            template: './src/index.html'
+            template: './src/templates/index.html'
         }),
+        new CleanWebpackPlugin(),
     ]
 
 }

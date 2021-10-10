@@ -2,7 +2,7 @@
 /**
  * ./src/index.js
  *
- *  一番初めに読み込むエントリーポイントとなるファイル【 index.js 】
+ *  一番初めに読み込むエントリーポイントとなるファイル【 index.js 】 → 【main.js】
  *
  * このファイルをpackage.jsonでエントリーポイントとして指定する
  * このファイルを読み込んだときに、使用するモジュールを読み込み、インポートされるように記述する
@@ -11,10 +11,10 @@
  */
 
 // my.jsのモジュールを読み込む
-import my from './modules/my.js';
+import my from './my.js';
 
 // my.cssモジュールを読み込む       ※ cssの読み込みは、書き方が特殊になっている 名前を付ける必要はない
-import './modules/my.css';
+import '../stylesheets/main.css';
 
 console.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');
 
