@@ -1,0 +1,17 @@
+{
+  "name": "webpack-study",
+  "version": "1.0.0",
+  "description": "https://github.com/shunwitter/webpack_course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "t_nishi",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {}
+}
