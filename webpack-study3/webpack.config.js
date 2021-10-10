@@ -1,6 +1,12 @@
 
 const path = require('path');
 
+// mini-css を使用する
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// html-webpack-plugin を使用する
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     // エントリーポイントのファイルの場所を指定
     entry: './src/index.js',
@@ -18,19 +24,17 @@ module.exports = {
     },
 
     module: {
-
         rules: [
-
             {
                 // 【.css】というファイル名を検知するための仕組みで、test:を使う   .をエスケープするために\バックスラッシュを使っている
                 test: /\.css/,
-
                 // 【.css】というファイルが見つかれば、以下のルールを適用させる、という意味
                 // loaderは下から順番に読み込まれていくため、css-loaderの上にsytle-loaderを記述する！
                 use: [
                     // ＜読み込み順 ②＞ css-loaderで読み込んだモジュールを、style-loaderで処理しなさいという命令
                     {
-                        loader: 'style-loader',
+                        // loader: 'style-loader',
+                        loader: MiniCssExtractPlugin.loader, // style-loader → MiniCssExtractPlugin へ置き換える
                     },
 
                     // ＜読み込み順 ①＞ css-loaderの読み込み   【.css】というファイルに対して,css-loaderを使用するという命令
@@ -38,11 +42,17 @@ module.exports = {
                         loader: 'css-loader',
                     },
                 ],
-
             },
-
         ],
-
     },
+
+    // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
+    plugins: [
+        new MiniCssExtractPlugin(),
+        new HtmlWebpackPlugin({
+            // index.html のコンテンツであるテンプレートの場所を記述する
+            template: './src/index.html'
+        }),
+    ]
 
 }
