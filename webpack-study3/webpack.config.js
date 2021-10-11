@@ -47,6 +47,22 @@ module.exports = {
                     },
                 ],
             },
+
+            // file-loaderの設定  ............................................
+            {
+                test: /\.(png|jpg)/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false,
+                            name: 'images/[name].[ext]',
+                        }
+                    },
+                ],
+            },
+            // file-loaderの設定  ............................................
+
         ],
     },
 
@@ -56,6 +72,7 @@ module.exports = {
             // 出力後のファイルをmain.css(デフォルト)でなく、my.cssに変更する。さらに出力されるdist/index.htmlの読み込みもmy.cssに変更してくれる
             filename: './stylesheets/main.css'
         }),
+        // HtmlWebpackPluginはlodashのプラグインに依存している
         new HtmlWebpackPlugin({
             // index.html のコンテンツであるテンプレートの場所を記述する
             template: './src/templates/index.html'
