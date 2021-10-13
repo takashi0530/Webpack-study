@@ -48,20 +48,29 @@ module.exports = {
                 ],
             },
 
-            // file-loaderの設定  ............................................
+            // assetmoduleの設定（file-loaderの設定）  ............................................
             {
                 test: /\.(png|jpg)/,
+
+                // assetModules を利用する （※webpack5のみの機能 各種ローダーがまとまっている）
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name][ext]' // ドットは含まない
+                },
+
+
                 use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            esModule: false,
-                            name: 'images/[name].[ext]',
-                        }
-                    },
+                    // assetModules を利用しない場合、以下file-loaderのコメントをとる
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         esModule: false,
+                    //         name: 'images/[name].[ext]',
+                    //     }
+                    // },
                 ],
             },
-            // file-loaderの設定  ............................................
+            // assetmoduleの設定（file-loaderの設定）  ............................................
 
         ],
     },
