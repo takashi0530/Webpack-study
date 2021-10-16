@@ -1,0 +1,14 @@
+//- _layout.pugを拡張してください、という記述  （レイアウトの読み込み）
+extends _layout.pug
+
+//- _layout.pugに記述されたデフォルトのtitleを上書きする（index.pug専用のtitleに設定する）
+block locals
+    - var title = 'indexページのタイトルです'
+
+//- _layout.pug のレイアウトページの中に、以下のコードが読み込まれる
+//- コンテンツの内容をいかに置き換えてください、という記述  （コンテンツ内容の指定）
+block content
+    h1 【pugで記述】これはテンプレート用のindex.htmlファイルです  （./src/index.pug
+    img(src="../images/icon.png")
+    img(src="../images/thumbnail.jpg")
+

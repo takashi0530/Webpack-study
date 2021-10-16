@@ -72,6 +72,26 @@ module.exports = {
             },
             // assetmoduleの設定（file-loaderの設定）  ............................................
 
+            // pug の設定  ※loderの読み込み順序は下から上。 pug-html-loader の次にhtml-loaderが読み込まれる  ...........................................
+            {
+                test: /\.pug/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                    },
+                    {
+                        // pugを使用する
+                        loader: 'pug-html-loader',
+                        // pugのビルド後のhtmlファイルを正しく改行させるオプション
+                        options: {
+                            pretty: true,
+                        }
+                    },
+                ],
+            }
+            // pug の設定   ...........................................
+
+
         ],
     },
 
@@ -81,11 +101,21 @@ module.exports = {
             // 出力後のファイルをmain.css(デフォルト)でなく、my.cssに変更する。さらに出力されるdist/index.htmlの読み込みもmy.cssに変更してくれる
             filename: './stylesheets/main.css'
         }),
+
         // HtmlWebpackPluginはlodashのプラグインに依存している
         new HtmlWebpackPlugin({
-            // index.html のコンテンツであるテンプレートの場所を記述する
-            template: './src/templates/index.html'
+            // index.html のコンテンツであるテンプレートの場所を記述する  →  index.pugに変更
+            template: './src/templates/index.pug',
+            filename: 'index.html'
         }),
+
+        // 複数ページの作成はHtmlWebpackPluginを新しく追加して、以下のように記述する
+        new HtmlWebpackPlugin({
+            // 例えばアクセスページをpugで追加する場合は以下のように記述する
+            template: './src/templates/access.pug',
+            filename: 'access.html'
+        }),
+
         new CleanWebpackPlugin(),
     ]
 
