@@ -14,7 +14,7 @@
 import my from './my.js';
 
 // my.cssモジュールを読み込む       ※ cssの読み込みは、書き方が特殊になっている 名前を付ける必要はない
-import '../stylesheets/main.css';
+import '../stylesheets/main.scss';
 
 console.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');
 

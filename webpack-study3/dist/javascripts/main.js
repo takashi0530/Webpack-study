@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/stylesheets/main.css":
-/*!**********************************!*\
-  !*** ./src/stylesheets/main.css ***!
-  \**********************************/
+/***/ "./src/stylesheets/main.scss":
+/*!***********************************!*\
+  !*** ./src/stylesheets/main.scss ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://webpack-study3/./src/stylesheets/main.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://webpack-study3/./src/stylesheets/main.scss?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _my_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my.js */ \"./src/javascripts/my.js\");\n/* harmony import */ var _stylesheets_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stylesheets/main.css */ \"./src/stylesheets/main.css\");\n\n/**\n * ./src/index.js\n *\n *  一番初めに読み込むエントリーポイントとなるファイル【 index.js 】 → 【main.js】\n *\n * このファイルをpackage.jsonでエントリーポイントとして指定する\n * このファイルを読み込んだときに、使用するモジュールを読み込み、インポートされるように記述する\n *\n * モジュールは ./src/modules ディレクトリを作成し、＜モジュール名.js＞ として作成する\n */\n\n// my.jsのモジュールを読み込む\n\n\n// my.cssモジュールを読み込む       ※ cssの読み込みは、書き方が特殊になっている 名前を付ける必要はない\n\n\nconsole.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');\n\n// 読み込んだmy.jsモジュールの使用は下記で行う\n(0,_my_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n// モジュールの作成と読み込みができたらビルドする\n// 以下がwebpackのビルドをするコマンド\n\n// npx webpack --mode development\n\n//# sourceURL=webpack://webpack-study3/./src/javascripts/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _my_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my.js */ \"./src/javascripts/my.js\");\n/* harmony import */ var _stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stylesheets/main.scss */ \"./src/stylesheets/main.scss\");\n\n/**\n * ./src/index.js\n *\n *  一番初めに読み込むエントリーポイントとなるファイル【 index.js 】 → 【main.js】\n *\n * このファイルをpackage.jsonでエントリーポイントとして指定する\n * このファイルを読み込んだときに、使用するモジュールを読み込み、インポートされるように記述する\n *\n * モジュールは ./src/modules ディレクトリを作成し、＜モジュール名.js＞ として作成する\n */\n\n// my.jsのモジュールを読み込む\n\n\n// my.cssモジュールを読み込む       ※ cssの読み込みは、書き方が特殊になっている 名前を付ける必要はない\n\n\nconsole.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');\n\n// 読み込んだmy.jsモジュールの使用は下記で行う\n(0,_my_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n// モジュールの作成と読み込みができたらビルドする\n// 以下がwebpackのビルドをするコマンド\n\n// npx webpack --mode development\n\n//# sourceURL=webpack://webpack-study3/./src/javascripts/main.js?");
 
 /***/ }),
 

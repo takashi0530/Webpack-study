@@ -12,6 +12,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 
 module.exports = {
+
+
     // エントリーポイントのファイルの場所を指定
     entry: './src/javascripts/main.js',
 
@@ -22,28 +24,75 @@ module.exports = {
         // __dirname     現在のフォルダがある階層を表す
         path: path.resolve(__dirname, './dist'),
 
+        // live reloadの設定
+        // publicPath: './dist/javascripts',
+
         // 出力されるファイルの名前を変更するときはfilename   例えばfilename: 'index_aaa.js'とするとdist/index_aaa.jsのファイルが生成される
         // filenameは記述しなくてもデフォルトでdist/main.jsのファイルが生成されるが、明示的に出力ファイル名を記述していたほうがいい
         filename: 'javascripts/main.js',
     },
 
+    // devServer: {
+        // contentBase: path.resolve(__dirname, './dist'),
+    //     hot: true,
+    //     open: true,
+    //     port: 8080,
+    //     host: '0.0.0.0',
+    //     historyApiFallback: true,
+    // },
+    devServer: {
+        liveReload: true,
+        // contentBase: './src',
+        // watchContentBase: true,
+        static: {
+            directory: path.resolve(__dirname, "./dist"),
+            // watch: true,
+
+            // inline: true,
+
+            },
+
+
+    },
+
+
+    // resolve: {
+    //     // modules: [path.resolve(__dirname, './src'), 'node_modules'],
+    //     modules: ['node_modules'],
+    // },
+    // エラーの詳細を表示する
+    stats: {
+    children: true,
+    },
+    // resolve: {
+    //     extensions: '.pug'
+    // },
+
+    target: "web",
+
     module: {
         rules: [
             {
                 // 【.css】というファイル名を検知するための仕組みで、test:を使う   .をエスケープするために\バックスラッシュを使っている
-                test: /\.css/,
+                test: /\.(css|sass|scss)/,
+
                 // 【.css】というファイルが見つかれば、以下のルールを適用させる、という意味
                 // loaderは下から順番に読み込まれていくため、css-loaderの上にsytle-loaderを記述する！
                 use: [
-                    // ＜読み込み順 ②＞ css-loaderで読み込んだモジュールを、style-loaderで処理しなさいという命令
+                    // ＜読み込み順 ③＞ css-loaderで読み込んだモジュールを、style-loaderで処理しなさいという命令
                     {
                         // loader: 'style-loader',
                         loader: MiniCssExtractPlugin.loader, // style-loader → MiniCssExtractPlugin へ置き換える
                     },
 
-                    // ＜読み込み順 ①＞ css-loaderの読み込み   【.css】というファイルに対して,css-loaderを使用するという命令
+                    // ＜読み込み順 ②＞ css-loaderの読み込み   【.css】というファイルに対して,css-loaderを使用するという命令
                     {
                         loader: 'css-loader',
+                    },
+
+                    // ＜読み込み順 ①＞ sass-loaderを使用する
+                    {
+                        loader: 'sass-loader',
                     },
                 ],
             },
@@ -95,6 +144,8 @@ module.exports = {
         ],
     },
 
+
+
     // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
     plugins: [
         new MiniCssExtractPlugin({
@@ -116,6 +167,14 @@ module.exports = {
             filename: 'access.html'
         }),
 
+        // tarou.pugのページを追加
+        new HtmlWebpackPlugin({
+            // 例えばアクセスページをpugで追加する場合は以下のように記述する
+            template: './src/templates/members/taro.pug',
+            filename: 'members/taro.html'
+        }),
+
+        // webpack dev-serverが起動したら、以下プラグインが有効化され、distファイル内が全削除される
         new CleanWebpackPlugin(),
     ]
 
