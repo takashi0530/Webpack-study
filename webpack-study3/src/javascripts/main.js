@@ -16,6 +16,19 @@ import my from './my.js';
 // my.cssモジュールを読み込む       ※ cssの読み込みは、書き方が特殊になっている 名前を付ける必要はない
 import '../stylesheets/main.scss';
 
+
+// vueコンポーネントをマウントする
+import Vue from 'vue';
+// 自分で定義したvueコンポーネントを読み込む
+import VueApp from './VueApp.vue';
+
+new Vue({
+    el: '#vue-root',
+    // VueAppコンポーネントをレンダリングする
+    render: (h) => h(VueApp),
+});
+
+
 console.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');
 
 // 読み込んだmy.jsモジュールの使用は下記で行う

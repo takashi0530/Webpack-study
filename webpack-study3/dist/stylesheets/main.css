@@ -1,14 +1,6 @@
-.footer {
-  background-color: #dddddd; }
+.footer{background-color:#dddddd}body{color:lightblue}.content{margin-right:16px}.content .title,.content .title-lg{font-size:24px;color:orange}.content .title-lg{font-size:32px}
 
-body {
-  color: lightblue; }
+p[data-v-61755dfd]{color:green}
 
-.content {
-  margin-right: 16px; }
-  .content .title, .content .title-lg {
-    font-size: 24px;
-    color: orange; }
-  .content .title-lg {
-    font-size: 32px; }
 
+/*# sourceMappingURL=main.css.map*/

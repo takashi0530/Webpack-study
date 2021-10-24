@@ -10,9 +10,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // clean-webpack-plugin を使用する
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+// vue-loader の中からプラグインを読み込む
+// const {VueLoaderPlugin} = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 
 module.exports = {
 
+    // プロダクションモードでビルドする設定（デフォルトはproductionになってる）
+    // mode: 'production',
+
+    // 開発モードでビルドする設定   npx webpack --mode development    →    npx webpack だけでコマンドOK
+    mode: 'development',
+
+    // ソースマップの追加（ソースコードが自分が書いたjsとおなじになり、デバッグしやすくなる）
+    // https://webpack.js.org/configuration/devtool/
+    devtool: 'source-map',
 
     // エントリーポイントのファイルの場所を指定
     entry: './src/javascripts/main.js',
@@ -72,6 +85,44 @@ module.exports = {
 
     module: {
         rules: [
+
+            // Vueファイルのローダー設定    ............................................
+            {
+                // もし.vueのファイルに遭遇したら、node_modulesを覗いて、vue-loaderを適用させる
+                test: /\.vue/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'vue-loader',
+                    },
+                ],
+            },
+
+
+            // JavaScript babel のローダー設定  ............................................
+            {
+                // .jsファイルを検知させる
+                test: /\.js/,
+                // node-modulesはトランスパイルの対象としないため、ディレクトリを除外する設定
+                exclude: /node_modules/,
+                // どのローダーを使うかの設定
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        // オプション設定
+                        options: {
+                            // 0.25%のシェアを持っているブラウザ かつ 公式サポートが終了していないブラウザ のみを対象としてトランスパイルする
+                            presets: [
+                                // プリセットを設定を増やす場合は['aaa', {bb:cc}] 形式で追加する
+                                ['@babel/preset-env', {'targets': '> 0.25%, not dead'}],
+                            ],
+                        },
+                    },
+                ],
+            },
+
+
+            // CSSとSASSのローダー設定  ............................................
             {
                 // 【.css】というファイル名を検知するための仕組みで、test:を使う   .をエスケープするために\バックスラッシュを使っている
                 test: /\.(css|sass|scss)/,
@@ -88,6 +139,10 @@ module.exports = {
                     // ＜読み込み順 ②＞ css-loaderの読み込み   【.css】というファイルに対して,css-loaderを使用するという命令
                     {
                         loader: 'css-loader',
+                        // cssのソースマップを追加する（ファイルサイズが重くなってしまう）
+                        options: {
+                            sourceMap: true,
+                        },
                     },
 
                     // ＜読み込み順 ①＞ sass-loaderを使用する
@@ -97,16 +152,15 @@ module.exports = {
                 ],
             },
 
-            // assetmoduleの設定（file-loaderの設定）  ............................................
+            // 画像 assetmoduleの設定（file-loaderの設定）  ............................................
             {
-                test: /\.(png|jpg)/,
+                test: /\.(png|jpg|jpeg)/,
 
                 // assetModules を利用する （※webpack5のみの機能 各種ローダーがまとまっている）
                 type: 'asset/resource',
                 generator: {
-                    filename: 'images/[name][ext]' // ドットは含まない
+                    filename: 'images/      [name][ext]' // ドットは含まない
                 },
-
 
                 use: [
                     // assetModules を利用しない場合、以下file-loaderのコメントをとる
@@ -117,11 +171,22 @@ module.exports = {
                     //         name: 'images/[name].[ext]',
                     //     }
                     // },
+
+                    // 画像の圧縮ができるimage-webpack-loaderを使用する
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            // 画像圧縮のレベルを変更するオプション
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65,
+                            },
+                        },
+                    },
                 ],
             },
-            // assetmoduleの設定（file-loaderの設定）  ............................................
 
-            // pug の設定  ※loderの読み込み順序は下から上。 pug-html-loader の次にhtml-loaderが読み込まれる  ...........................................
+            // pug のloader設定  ※loderの読み込み順序は下から上。 pug-html-loader の次にhtml-loaderが読み込まれる  ...........................................
             {
                 test: /\.pug/,
                 use: [
@@ -138,7 +203,6 @@ module.exports = {
                     },
                 ],
             }
-            // pug の設定   ...........................................
 
 
         ],
@@ -146,8 +210,9 @@ module.exports = {
 
 
 
-    // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
     plugins: [
+
+        // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
         new MiniCssExtractPlugin({
             // 出力後のファイルをmain.css(デフォルト)でなく、my.cssに変更する。さらに出力されるdist/index.htmlの読み込みもmy.cssに変更してくれる
             filename: './stylesheets/main.css'
@@ -176,6 +241,9 @@ module.exports = {
 
         // webpack dev-serverが起動したら、以下プラグインが有効化され、distファイル内が全削除される
         new CleanWebpackPlugin(),
+
+        // VueLoaderPluginを使用する。追加する
+        new VueLoaderPlugin(),
     ]
 
 }
