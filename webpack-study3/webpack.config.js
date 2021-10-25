@@ -86,6 +86,17 @@ module.exports = {
     module: {
         rules: [
 
+            // Typescriptのローダー設定     ........................................................
+            {
+                test: /\.(ts|tsx)/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                    },
+                ]
+            },
+
             // Vueファイルのローダー設定    ............................................
             {
                 // もし.vueのファイルに遭遇したら、node_modulesを覗いて、vue-loaderを適用させる

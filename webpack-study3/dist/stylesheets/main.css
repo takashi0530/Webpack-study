@@ -1,6 +1,20 @@
-.footer{background-color:#dddddd}body{color:lightblue}.content{margin-right:16px}.content .title,.content .title-lg{font-size:24px;color:orange}.content .title-lg{font-size:32px}
+.footer {
+  background-color: #dddddd; }
 
-p[data-v-61755dfd]{color:green}
+body {
+  color: lightblue; }
+
+.content {
+  margin-right: 16px; }
+  .content .title, .content .title-lg {
+    font-size: 24px;
+    color: orange; }
+  .content .title-lg {
+    font-size: 32px; }
+
+p[data-v-61755dfd] {
+  color: green;
+}
 
 
 /*# sourceMappingURL=main.css.map*/
