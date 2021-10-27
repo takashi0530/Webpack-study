@@ -78,7 +78,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Alert_tsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Alert.tsx */ "./src/javascripts/Alert.tsx");
 // react-dom と react本体 をインポート
+
+ // Alertコンポーネントの読み込み
 
  // コンポーネントを定義する
 
@@ -87,7 +90,9 @@ var App = function App(props) {
     style: {
       color: '#000'
     }
-  }, "\u3053\u3093\u306B\u3061\u308F\uFF01React!!");
+  }, "\u3053\u3093\u306B\u3061\u308F\uFF01React!!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Alert_tsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    message: "Alet\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u6210\u529F\uFF01"
+  }));
 }; // id react-rootを持つ要素を取得
 
 
@@ -29932,6 +29937,31 @@ if (false) {} else {
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
+
+
+/***/ }),
+
+/***/ "./src/javascripts/Alert.tsx":
+/*!***********************************!*\
+  !*** ./src/javascripts/Alert.tsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+// reactコンポーネントがmessageというプロパティを受け取り、messageは文字列であるということ
+var Alert = function (_a) {
+    var message = _a.message;
+    // リストラクチャアサイメントという書き方以下のようにも×
+    // const { message } = props;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: { backgroundColor: 'green', color: '#fff', padding: '1em' } }, message));
+};
+// 上記のコンポーネントをエクスポートして、他でも使えるようにする
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Alert);
 
 
 /***/ }),
