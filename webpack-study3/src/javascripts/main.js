@@ -1,7 +1,5 @@
 
 /**
- * ./src/index.js
- *
  *  一番初めに読み込むエントリーポイントとなるファイル【 index.js 】 → 【main.js】
  *
  * このファイルをpackage.jsonでエントリーポイントとして指定する
@@ -9,6 +7,9 @@
  *
  * モジュールは ./src/modules ディレクトリを作成し、＜モジュール名.js＞ として作成する
  */
+
+//  Reactコンポーネントを読み込む
+import './reactApp.jsx';
 
 // my.jsのモジュールを読み込む
 import my from './my.js';

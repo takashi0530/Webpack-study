@@ -126,6 +126,7 @@ module.exports = {
                             presets: [
                                 // プリセットを設定を増やす場合は['aaa', {bb:cc}] 形式で追加する
                                 ['@babel/preset-env', {'targets': '> 0.25%, not dead'}],
+                                '@babel/preset-react'
                             ],
                         },
                     },
