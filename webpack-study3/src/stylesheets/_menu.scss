@@ -1,0 +1,19 @@
+.menu {
+    display: flex;
+    margin-bottom: 4em;
+
+    // .menu__item  というcssが生成される(&__item)  & は親のクラス名を踏襲する
+    &__item {
+        margin-right: 0.5em;
+
+        // .menuの中の.menu__itemの中の、aタグに適応
+        a {
+            padding: 0.5em;
+            border-bottom: 4px solid #ddd;
+            text-decoration: none;
+            &:hover {
+                color: green
+            }
+        }
+    }
+}

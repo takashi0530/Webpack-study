@@ -11,7 +11,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 // vue-loader の中からプラグインを読み込む
-// const {VueLoaderPlugin} = require('vue-loader/lib/plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
@@ -43,6 +42,8 @@ module.exports = {
         // 出力されるファイルの名前を変更するときはfilename   例えばfilename: 'index_aaa.js'とするとdist/index_aaa.jsのファイルが生成される
         // filenameは記述しなくてもデフォルトでdist/main.jsのファイルが生成されるが、明示的に出力ファイル名を記述していたほうがいい
         filename: 'javascripts/main.js',
+
+        publicPath: '/',
     },
 
     // devServer: {

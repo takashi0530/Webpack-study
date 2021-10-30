@@ -10,8 +10,11 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title #{title}
     body
-        //- 部分テンプレートとして_menu.pugを読み込み
-        include _menu.pug
+        .container
+            //- 部分テンプレートとして_menu.pugを読み込み
+            include _menu.pug
 
-        //- 以下のcontent部分が各ページのblock content部分に置き換わる
-        block content
+            //- 以下のcontent部分が各ページのblock content部分に置き換わる
+            block content
+            .footer
+                | webpack Couse

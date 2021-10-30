@@ -8,7 +8,7 @@
  * モジュールは ./src/modules ディレクトリを作成し、＜モジュール名.js＞ として作成する
  */
 
-//  Reactコンポーネントを読み込む
+// 【React】Reactコンポーネントを読み込む
 import './reactApp.jsx';
 
 // my.jsのモジュールを読み込む
@@ -18,14 +18,15 @@ import my from './my.js';
 import '../stylesheets/main.scss';
 
 
-// vueコンポーネントをマウントする
+// 【vue】vueコンポーネントをマウントする
 import Vue from 'vue';
-// 自分で定義したvueコンポーネントを読み込む
+// 【vue】自分で定義したvueコンポーネントを読み込む
 import VueApp from './VueApp.vue';
 
-// add.tsをインポートする
+// 【TypeScript】add.tsをインポートする
 import add from './add.ts';
 
+// 【vue】
 new Vue({
     el: '#vue-root',
     // VueAppコンポーネントをレンダリングする
@@ -33,10 +34,10 @@ new Vue({
 });
 
 console.log(add(3, 9));
-console.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)');
+console.log('★ウェブパックのテスト★ (これは ./src/index.js の中身です)'); // 後で消す
 
 // 読み込んだmy.jsモジュールの使用は下記で行う
-my();
+my(); // 後で消す
 
 // モジュールの作成と読み込みができたらビルドする
 // 以下がwebpackのビルドをするコマンド

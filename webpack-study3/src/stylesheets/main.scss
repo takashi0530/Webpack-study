@@ -2,13 +2,62 @@
 // footer.scssを読み込める
 @import './footer.scss';
 
+// _menu.scss を読み込む（※アンスコがなくても問題なく読み込める）
+@import './menu.scss';
+
 // @mixinは関数のようなもので、引数をとることができる。{}内で引数を利用できる
 @mixin set-margin($direction, $value) {
     margin-#{$direction}: $value;
 }
 
+
+// CSSのリセット
+html, body, div, p, img, h1, h2, h3, h4, h5 {
+    box-sizing: border-box;
+}
+
+
 body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family: sans-serif;
+
     color: lightblue;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+.container {
+    width: 980px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.5em;
+}
+
+// メインのイメージを背景画像にする
+.main-image {
+    background-image: url('../images/thumbnail.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 1em 0;
+}
+
+$icon-size: 64px;
+.icon {
+    width: $icon-size;
+    height: $icon-size;
+    border-radius: $icon-size/2; // 半分のサイズ
+    padding: 4px;
+    position: absolute;
+    top: 1em;
+    left: 1em;
 }
 
 // 変数 （共通の複数のスタイルを一度に変更できる）
