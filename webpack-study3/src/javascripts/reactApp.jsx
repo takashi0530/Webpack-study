@@ -12,7 +12,7 @@ const App = (props) => {
         <div style={{color: '#000'}}>
             こんにちわ！React!!
 
-            <Alert message="Aletコンポーネント成功！" />
+            <Alert message="Alertコンポーネント成功！" />
         </div>
     );
 };

@@ -29,6 +29,7 @@ module.exports = {
     // エントリーポイントのファイルの場所を指定
     entry: './src/javascripts/main.js',
 
+
     // どこにファイルを出力したいのかを指定
     output: {
         // プロジェクト直下のdistディレクトリに出力
@@ -41,7 +42,10 @@ module.exports = {
 
         // 出力されるファイルの名前を変更するときはfilename   例えばfilename: 'index_aaa.js'とするとdist/index_aaa.jsのファイルが生成される
         // filenameは記述しなくてもデフォルトでdist/main.jsのファイルが生成されるが、明示的に出力ファイル名を記述していたほうがいい
-        filename: 'javascripts/main.js',
+        // filename: 'javascripts/main.js',
+        // キャッシュを削除する記述 [name]-[contenthash].js   webpack4なら [name]-[hash].js',
+        filename: 'javascripts/[name]-[contenthash].js',
+
 
         publicPath: '/',
     },
@@ -172,7 +176,10 @@ module.exports = {
                 // assetModules を利用する （※webpack5のみの機能 各種ローダーがまとまっている）
                 type: 'asset/resource',
                 generator: {
-                    filename: 'images/      [name][ext]' // ドットは含まない
+                    // キャッシュを削除しない場合の書き方
+                    // filename: 'images/[name][ext]' // ドットは含まない
+                    // キャッシュを削除する場合の書き方
+                    filename: 'images/[name]-[contenthash][ext]' // ドットは含まない
                 },
 
                 use: [
@@ -228,7 +235,9 @@ module.exports = {
         // moduleの下にプラグインを追加する（MiniCssExtractPluginを読み込む）
         new MiniCssExtractPlugin({
             // 出力後のファイルをmain.css(デフォルト)でなく、my.cssに変更する。さらに出力されるdist/index.htmlの読み込みもmy.cssに変更してくれる
-            filename: './stylesheets/main.css'
+            // filename: './stylesheets/main.css'
+
+            filename: './stylesheets/[name]-[contenthash].css'
         }),
 
         // HtmlWebpackPluginはlodashのプラグインに依存している
